@@ -1,9 +1,8 @@
 import org.junit.jupiter.api.Test;
+import runge.WordleDictionary;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,10 +13,14 @@ public class WordleTest
     {
         //given
         WordleDictionary wordle = new WordleDictionary();
+
         //when
         String word = wordle.getDefinition("BO");
+        String newWord = wordle.getDefinition("AA");
+
         //then
         assertEquals("a pal [n BOS]", word);
+        assertEquals("rough, cindery lava [n -S]", newWord);
     }
 
     @Test
