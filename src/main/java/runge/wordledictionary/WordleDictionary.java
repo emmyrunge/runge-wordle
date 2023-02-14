@@ -21,9 +21,10 @@ public class WordleDictionary
 
         if (dictionary.exists())
         {
-            for (int i = 0; i < 167964; i++)
+            String line = bufferedReader.readLine();
+
+            while(line != null)
             {
-                String line = bufferedReader.readLine();
                 String[] splitLine = line.split(" ", 2);
                 if (splitLine.length == 1)
                 {
@@ -34,6 +35,7 @@ public class WordleDictionary
                     wordSplit.add(splitLine[0]);
                     definitionSplit.add(splitLine[1]);
                 }
+                line = bufferedReader.readLine();
             }
         }
     }
