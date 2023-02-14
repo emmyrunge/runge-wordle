@@ -1,12 +1,14 @@
+package runge.wordledictionary;
+
 import org.junit.jupiter.api.Test;
-import runge.WordleDictionary;
+import runge.wordledictionary.WordleDictionary;
 
 import java.io.*;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class WordleTest
+public class WordleDictionaryTest
 {
     @Test
     public void getDefinition() throws IOException
