@@ -18,26 +18,23 @@ public class WordleDictionary
 
         File dictionary = new File("src/main/java/runge/wordledictionary/dictionary.txt");
         bufferedReader = new BufferedReader(new FileReader(dictionary));
+        String line = bufferedReader.readLine();
 
-        if (dictionary.exists())
+        while (line != null)
         {
-            String line = bufferedReader.readLine();
-
-            while(line != null)
+            String[] splitLine = line.split(" ", 2);
+            if (splitLine.length == 1)
             {
-                String[] splitLine = line.split(" ", 2);
-                if (splitLine.length == 1)
-                {
-                    wordSplit.add(splitLine[0]);
-                }
-                else
-                {
-                    wordSplit.add(splitLine[0]);
-                    definitionSplit.add(splitLine[1]);
-                }
-                line = bufferedReader.readLine();
+                wordSplit.add(splitLine[0]);
             }
+            else
+            {
+                wordSplit.add(splitLine[0]);
+                definitionSplit.add(splitLine[1]);
+            }
+            line = bufferedReader.readLine();
         }
+
     }
 
     public String getDefinition(String word)
