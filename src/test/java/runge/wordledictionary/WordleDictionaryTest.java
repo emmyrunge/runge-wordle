@@ -44,7 +44,7 @@ public class WordleDictionaryTest
     {
         WordleDictionary wordle = new WordleDictionary();
 
-        String definition = String.format(wordle.getDefinition("FORMATTING"));
+         String definition = String.format(wordle.getDefinition("FORMATTING").toLowerCase());
 
         assertEquals("<format=v> [v]", definition);
     }

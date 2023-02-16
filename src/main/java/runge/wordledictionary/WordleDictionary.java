@@ -8,8 +8,6 @@ public class WordleDictionary
     private ArrayList<String> definitionSplit;
     private ArrayList<String> wordSplit;
 
-    private final BufferedReader bufferedReader;
-
 
     public WordleDictionary() throws IOException
     {
@@ -17,7 +15,7 @@ public class WordleDictionary
         definitionSplit = new ArrayList<>();
 
         File dictionary = new File("src/main/java/runge/wordledictionary/dictionary.txt");
-        bufferedReader = new BufferedReader(new FileReader(dictionary));
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(dictionary));
         String line = bufferedReader.readLine();
 
         while (line != null)
@@ -26,6 +24,7 @@ public class WordleDictionary
             if (splitLine.length == 1)
             {
                 wordSplit.add(splitLine[0]);
+                definitionSplit.add("");
             }
             else
             {
@@ -39,14 +38,12 @@ public class WordleDictionary
 
     public String getDefinition(String word)
     {
-        for (int i = 0; i < wordSplit.size(); i++)
+        int index = wordSplit.indexOf(word.toUpperCase());
+        if(index == -1)
         {
-            if (word.equals(wordSplit.get(i)))
-            {
-                return definitionSplit.get(i);
-            }
+            return null;
         }
-        return null;
+        return definitionSplit.get(index);
     }
 
     public ArrayList<String> getList()
