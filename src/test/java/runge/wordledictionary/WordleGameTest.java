@@ -41,6 +41,6 @@ public class WordleGameTest
         boolean returnStatus = Arrays.equals(notCorrect,correctArray);
 
         //then
-        assertFalse(false, String.valueOf(returnStatus));
+        assertFalse(returnStatus);
     }
 }
