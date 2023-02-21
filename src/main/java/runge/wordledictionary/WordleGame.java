@@ -6,7 +6,6 @@ import java.util.Random;
 
 public class WordleGame
 {
-    private ArrayList<String> wordList;
     private String randomWord;
     private final Random rand = new Random();
     private ArrayList<String> fiveLetterWords;
@@ -15,29 +14,33 @@ public class WordleGame
     public WordleGame() throws IOException
     {
         WordleDictionary dictionary = new WordleDictionary();
-        wordList = dictionary.getList();
+        ArrayList<String> wordList = dictionary.getList();
 
         fiveLetterWords = new ArrayList<>();
         for (int i = 0; i < wordList.size(); i++)
         {
-            if (wordList.get(i).length() == 5)
+            String word = wordList.get(i);
+            if (word.length() == 5)
             {
-                fiveLetterWords.add(wordList.get(i));
+                fiveLetterWords.add(word);
             }
         }
         randomWord = fiveLetterWords.get(rand.nextInt(fiveLetterWords.size()));
     }
 
-    public CharResult[] guess(String guessWord) throws IOException
+    public CharResult[] guess(String guessWord)
     {
         //gets random word from wordList
         CharResult[] status = new CharResult[5];
 
         for (int i = 0; i < randomWord.length(); i++) //iterate 5 times
         {
-            if (randomWord.contains("" + guessWord.charAt(i)))
+            char guessChar = guessWord.charAt(i);
+            String guessString = String.valueOf(guessChar);
+
+            if (randomWord.contains("" + guessString))
             {
-                if (randomWord.charAt(i) == guessWord.charAt(i)) //if letters equals in exact spot
+                if (randomWord.charAt(i) == guessChar) //if letters equals in exact spot
                 {
                     status[i] = CharResult.Correct;
                 }
