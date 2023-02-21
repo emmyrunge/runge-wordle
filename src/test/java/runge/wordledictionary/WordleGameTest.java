@@ -37,13 +37,10 @@ public class WordleGameTest
         CharResult[] notCorrect = game1.guess("xxxxx");
         CharResult[] correctArray = {CharResult.Correct, CharResult.Correct,
                 CharResult.Correct, CharResult.Correct, CharResult.Correct};
-        boolean flag = false;
-        if (notCorrect == correctArray)
-        {
-            flag = true;
-        }
+
+        boolean returnStatus = Arrays.equals(notCorrect,correctArray);
 
         //then
-        assertFalse(false, String.valueOf(flag));
+        assertFalse(false, String.valueOf(returnStatus));
     }
 }
