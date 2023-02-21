@@ -1,7 +1,6 @@
 package runge.wordledictionary;
 
 import org.junit.jupiter.api.Test;
-import runge.wordledictionary.WordleDictionary;
 
 import java.io.*;
 import java.util.*;

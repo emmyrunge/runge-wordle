@@ -5,8 +5,8 @@ import java.util.*;
 
 public class WordleDictionary
 {
-    private ArrayList<String> definitionSplit;
-    private ArrayList<String> wordSplit;
+    protected ArrayList<String> definitionSplit;
+    protected ArrayList<String> wordSplit;
 
 
     public WordleDictionary() throws IOException
