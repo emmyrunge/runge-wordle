@@ -30,17 +30,16 @@ public class WordleGame
 
     public CharResult[] guess(String guessWord)
     {
-        //gets random word from wordList
         CharResult[] status = new CharResult[5];
 
-        for (int i = 0; i < randomWord.length(); i++) //iterate 5 times
+        for (int i = 0; i < randomWord.length(); i++)
         {
             char guessChar = guessWord.charAt(i);
             String guessString = String.valueOf(guessChar);
 
             if (randomWord.contains("" + guessString))
             {
-                if (randomWord.charAt(i) == guessChar) //if letters equals in exact spot
+                if (randomWord.charAt(i) == guessChar)
                 {
                     status[i] = CharResult.Correct;
                 }
@@ -49,7 +48,7 @@ public class WordleGame
                     status[i] = CharResult.WrongPlace;
                 }
             }
-            else //letter not in word
+            else
             {
                 status[i] = CharResult.NotFound;
             }
@@ -63,19 +62,3 @@ public class WordleGame
         return randomWord;
     }
 }
-
-
-/*
-
-1) wordle sets a random word
-2) user will guess a word 5 times
-    each guess is one round
-3) if letter = true, tell them it is Correct (from enum)
-       if letter = wrong spot but right letter, tell them it is in WrongPlace (from enum)
-       if letter = wrong everything, tell them it is wrong (from enum)
-
-4) once person runs out of guesses
-    if they got it = yay
-    if they didn't = boo
-        if they get it before (aka all letters return correct, they're super smart)
- */
