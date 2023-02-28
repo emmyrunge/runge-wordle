@@ -10,13 +10,12 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doReturn;
-import static runge.wordledictionary.CharResult.Correct;
-import static runge.wordledictionary.CharResult.NotFound;
+import static runge.wordledictionary.CharResult.*;
 
 public class WordleGameTest
 {
     @Test
-    public void correctGuessTest()
+    public void correctGuess()
     {
 
         //given
@@ -35,7 +34,7 @@ public class WordleGameTest
     }
 
     @Test
-    public void incorrectGuessTest()
+    public void incorrectGuess()
     {
         //given
         WordleDictionary dictionary = Mockito.mock(WordleDictionary.class);
@@ -43,11 +42,10 @@ public class WordleGameTest
         doReturn(words).when(dictionary).getList();
         WordleGame game1 = new WordleGame(dictionary);
 
-
         //when
-        CharResult[] incorrectGuess = game1.guess("SMOKE");
-        CharResult[] correctArray = {NotFound, NotFound,
-                NotFound, NotFound, Correct};
+        CharResult[] incorrectGuess = game1.guess("APRES");
+        CharResult[] correctArray = {Correct, Correct,
+                NotFound, WrongPlace, NotFound};
 
         boolean returnStatus = Arrays.equals(incorrectGuess, correctArray);
 
