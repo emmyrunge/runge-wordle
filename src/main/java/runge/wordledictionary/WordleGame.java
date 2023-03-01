@@ -1,19 +1,17 @@
 package runge.wordledictionary;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class WordleGame
 {
-    private String randomWord;
     private final Random rand = new Random();
+    private String randomWord;
     private ArrayList<String> fiveLetterWords;
 
 
-    public WordleGame() throws IOException
+    public WordleGame(WordleDictionary dictionary)
     {
-        WordleDictionary dictionary = new WordleDictionary();
         ArrayList<String> wordList = dictionary.getList();
 
         fiveLetterWords = new ArrayList<>();

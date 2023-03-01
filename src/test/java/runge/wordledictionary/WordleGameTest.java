@@ -1,46 +1,55 @@
 package runge.wordledictionary;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
-import java.io.CharArrayReader;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.doReturn;
+import static runge.wordledictionary.CharResult.*;
 
 public class WordleGameTest
 {
     @Test
-    public void WordleGameCorrectTest() throws IOException
+    public void correctGuess()
     {
 
         //given
-        WordleGame game1 = new WordleGame();
+        WordleDictionary dictionary = Mockito.mock(WordleDictionary.class);
+        ArrayList<String> words = new ArrayList<>(List.of("APPLE"));
+        doReturn(words).when(dictionary).getList();
+        WordleGame game1 = new WordleGame(dictionary);
 
         //when
-        String correctWord = game1.getRandomWord();
-        CharResult[] correctArray = {CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct};
-        CharResult[] status = game1.guess(correctWord);
+        CharResult[] status = game1.guess("APPLE");
 
         //then
+        CharResult[] correctArray = {Correct, Correct, Correct, Correct, Correct};
         assertArrayEquals(correctArray, status);
 
     }
 
     @Test
-    public void WordleGameIncorrectTest() throws IOException
+    public void incorrectGuess()
     {
         //given
-        WordleGame game1 = new WordleGame();
+        WordleDictionary dictionary = Mockito.mock(WordleDictionary.class);
+        ArrayList<String> words = new ArrayList<>(List.of("APPLE"));
+        doReturn(words).when(dictionary).getList();
+        WordleGame game1 = new WordleGame(dictionary);
 
         //when
-        CharResult[] notCorrect = game1.guess("xxxxx");
-        CharResult[] correctArray = {CharResult.Correct, CharResult.Correct,
-                CharResult.Correct, CharResult.Correct, CharResult.Correct};
+        CharResult[] incorrectGuess = game1.guess("APRES");
+        CharResult[] correctArray = {Correct, Correct,
+                NotFound, WrongPlace, NotFound};
 
-        boolean returnStatus = Arrays.equals(notCorrect,correctArray);
+        boolean returnStatus = Arrays.equals(incorrectGuess, correctArray);
 
         //then
-        assertFalse(returnStatus);
+        assertTrue(returnStatus);
     }
 }
