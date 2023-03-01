@@ -10,7 +10,6 @@ public class WordleGameFrame extends JFrame
 {
     //String label = String.valueOf(new JLabel());
     //private JTextField[][] field;
-    private String userGuessWord;
 
     public WordleGameFrame(WordleGame game)
     {
@@ -37,7 +36,7 @@ public class WordleGameFrame extends JFrame
             {
                 System.out.println("GUESS CLICKED");
 
-                userGuessWord = guessField.getText();
+                String userGuessWord = guessField.getText();
                 CharResult[] status = game.guess(userGuessWord);
                 guessLabel.setText("Output: " + Arrays.toString(status));
             }
