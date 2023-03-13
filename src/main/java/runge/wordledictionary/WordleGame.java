@@ -2,28 +2,33 @@ package runge.wordledictionary;
 
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 public class WordleGame
 {
     private final Random rand = new Random();
+    private final ArrayList<String> fiveLetterWords;
     private String randomWord;
-    private ArrayList<String> fiveLetterWords;
 
 
     public WordleGame(WordleDictionary dictionary)
     {
-        ArrayList<String> wordList = dictionary.getList();
+        Set<String> wordList = dictionary.getList();
 
         fiveLetterWords = new ArrayList<>();
-        for (int i = 0; i < wordList.size(); i++)
+        for (String word : wordList)
         {
-            String word = wordList.get(i);
             if (word.length() == 5)
             {
                 fiveLetterWords.add(word);
             }
         }
         randomWord = fiveLetterWords.get(rand.nextInt(fiveLetterWords.size()));
+    }
+
+    public ArrayList<String> getFiveLetterWords()
+    {
+        return fiveLetterWords;
     }
 
     public CharResult[] guess(String guessWord)

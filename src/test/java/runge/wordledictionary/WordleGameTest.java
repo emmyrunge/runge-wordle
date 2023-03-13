@@ -3,9 +3,10 @@ package runge.wordledictionary;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,7 +21,7 @@ public class WordleGameTest
 
         //given
         WordleDictionary dictionary = Mockito.mock(WordleDictionary.class);
-        ArrayList<String> words = new ArrayList<>(List.of("APPLE"));
+        Set<String> words = new HashSet<>(List.of("APPLE"));
         doReturn(words).when(dictionary).getList();
         WordleGame game1 = new WordleGame(dictionary);
 
@@ -38,7 +39,7 @@ public class WordleGameTest
     {
         //given
         WordleDictionary dictionary = Mockito.mock(WordleDictionary.class);
-        ArrayList<String> words = new ArrayList<>(List.of("APPLE"));
+        Set<String> words = new HashSet<>(List.of("APPLE"));
         doReturn(words).when(dictionary).getList();
         WordleGame game1 = new WordleGame(dictionary);
 

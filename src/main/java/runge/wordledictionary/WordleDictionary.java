@@ -1,18 +1,19 @@
 package runge.wordledictionary;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Set;
 
 public class WordleDictionary
 {
-    protected ArrayList<String> definitionSplit;
-    protected ArrayList<String> wordSplit;
-
+    private HashMap<String, String> map;
 
     public WordleDictionary() throws IOException
     {
-        wordSplit = new ArrayList<>();
-        definitionSplit = new ArrayList<>();
+        map = new HashMap<>();
 
         File dictionary = new File("src/main/java/runge/wordledictionary/dictionary.txt");
         BufferedReader bufferedReader = new BufferedReader(new FileReader(dictionary));
@@ -21,33 +22,28 @@ public class WordleDictionary
         while (line != null)
         {
             String[] splitLine = line.split(" ", 2);
+            String wordSplit = splitLine[0];
             if (splitLine.length == 1)
             {
-                wordSplit.add(splitLine[0]);
-                definitionSplit.add("");
+                map.put(wordSplit, "");
             }
             else
             {
-                wordSplit.add(splitLine[0]);
-                definitionSplit.add(splitLine[1]);
+                String definitionSplit = splitLine[1];
+                map.put(wordSplit, definitionSplit);
             }
             line = bufferedReader.readLine();
-        }
 
+        }
     }
 
     public String getDefinition(String word)
     {
-        int index = wordSplit.indexOf(word.toUpperCase());
-        if(index == -1)
-        {
-            return null;
-        }
-        return definitionSplit.get(index);
+        return map.get(word);
     }
 
-    public ArrayList<String> getList()
+    public Set<String> getList()
     {
-        return wordSplit;
+        return map.keySet();
     }
 }
