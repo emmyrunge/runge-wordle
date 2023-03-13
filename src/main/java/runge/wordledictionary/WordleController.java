@@ -70,7 +70,8 @@ public class WordleController
             {
                 row--;
                 CharResult[] result = wordleGame.guess(String.valueOf(guessWord));
-                //CharResult[] correctValues = {CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct};
+                //CharResult[] correctValues = {CharResult.Correct, CharResult.Correct,
+                // CharResult.Correct, CharResult.Correct, CharResult.Correct};
                 for (int i = 0; i < guessWord.length(); i++)
                 {
                     if (result[i] == CharResult.Correct)
@@ -92,6 +93,7 @@ public class WordleController
                         column++;
                     }
                 }
+
                 if (Objects.equals(correctWord, guessWord.toString()))
                 {
                     JOptionPane.showMessageDialog(null, "GOOD JOB!");
@@ -109,7 +111,8 @@ public class WordleController
 
         if (row >= 6)
         {
-            JOptionPane.showMessageDialog(null, "The word was: " + correctWord + ". Better luck next time");
+            JOptionPane.showMessageDialog(null,
+                    "The word was: " + correctWord + ". Better luck next time");
             System.exit(1);
 
         }

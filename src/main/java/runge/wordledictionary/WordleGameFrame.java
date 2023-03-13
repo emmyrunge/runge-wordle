@@ -15,13 +15,13 @@ public class WordleGameFrame extends JFrame
 
     public WordleGameFrame(WordleGame wordleGame, WordleDictionary dictionary)
     {
-        controller = new WordleController(wordleGame, dictionary, letters, keyboard, enter, backspace);
+        controller = new WordleController
+                (wordleGame, dictionary, letters, keyboard, enter, backspace);
 
         //main panel
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
-        //ImageIcon image = new ImageIcon("/Users/michalrunge/IdeaProjects/WordleRunge/src/main/java/runge/wordledictionary/blacklogo.png");
         JLabel wordleLabel = new JLabel("Wordle");
         wordleLabel.setVerticalAlignment(JLabel.TOP);
         wordleLabel.setSize(5, 5);
