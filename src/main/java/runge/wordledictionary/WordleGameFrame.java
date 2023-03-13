@@ -21,7 +21,6 @@ public class WordleGameFrame extends JFrame
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
-        //icon image
         //ImageIcon image = new ImageIcon("/Users/michalrunge/IdeaProjects/WordleRunge/src/main/java/runge/wordledictionary/blacklogo.png");
         JLabel wordleLabel = new JLabel("Wordle");
         wordleLabel.setVerticalAlignment(JLabel.TOP);

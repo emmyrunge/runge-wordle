@@ -61,9 +61,6 @@ public class WordleController
 
     public void enterGuess()
     {
-        //make sure user has a guess left
-        //once all five spots have been filled
-        //and word is in list
         String lookFor = guessWord.toString();
         String correctWord = wordleGame.getRandomWord();
         System.out.println(correctWord);
@@ -76,7 +73,6 @@ public class WordleController
                 //CharResult[] correctValues = {CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct, CharResult.Correct};
                 for (int i = 0; i < guessWord.length(); i++)
                 {
-                    //enter guess and run the .guess method
                     if (result[i] == CharResult.Correct)
                     {
                         labels[row][column].setOpaque(true);
@@ -121,8 +117,6 @@ public class WordleController
 
     public void backspaceLetter()
     {
-        //BUG: for some reason already sets the text to ""
-        //spot = labels[row][column];
         //get the label, set text to "" and then go back one label
         if (labels[row][column].getText().isEmpty())
         {
@@ -136,7 +130,6 @@ public class WordleController
             {
                 column--;
                 labels[row][column].setText("");
-                //moves the spot im looking at one column back
             }
         }
         guessWord.deleteCharAt(column);
