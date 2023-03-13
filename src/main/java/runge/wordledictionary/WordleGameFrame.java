@@ -15,8 +15,8 @@ public class WordleGameFrame extends JFrame
 
     public WordleGameFrame(WordleGame wordleGame, WordleDictionary dictionary)
     {
-        controller = new WordleController
-                (wordleGame, dictionary, letters, keyboard, enter, backspace);
+        controller = new WordleController(wordleGame,
+                dictionary, letters, keyboard, enter, backspace);
 
         //main panel
         JPanel mainPanel = new JPanel();
