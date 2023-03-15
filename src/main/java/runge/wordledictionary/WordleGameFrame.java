@@ -110,7 +110,7 @@ public class WordleGameFrame extends JFrame
         });
         keyboardLine3.add(backspace);
 
-        JPanel keyboardGrid = new JPanel(new GridLayout(3, 10))
+        JPanel keyboardGrid = new JPanel(new GridLayout(3, 10));
 
         keyboardGrid.add(keyboardLine1, BorderLayout.NORTH);
         keyboardGrid.add(keyboardLine2, BorderLayout.CENTER);
@@ -131,11 +131,13 @@ public class WordleGameFrame extends JFrame
                 {
                     controller.addLetter(String.valueOf(e.getKeyChar()).toUpperCase());
                     System.out.println("Key " + e.getKeyChar() + " pressed");
-                } else if (character == KeyEvent.VK_BACK_SPACE) {
+                } else if (character == KeyEvent.VK_BACK_SPACE)
+                {
                     //remove letter
                     controller.backspaceLetter();
                     System.out.println("Key 'backspace' pressed");
-                } else if (character == KeyEvent.VK_ENTER) {
+                } else if (character == KeyEvent.VK_ENTER)
+                {
                     //take each letter, build into string and do .guess method
                     controller.enterGuess();
                     System.out.println("Key 'enter' pressed");
