@@ -17,8 +17,7 @@ public class WordleController
 
 
     public WordleController(WordleGame wordleGame, WordleDictionary dictionary,
-                            JLabel[][] labels, JButton[] keyboard, JButton enter, JButton backspace)
-    {
+                            JLabel[][] labels, JButton[] keyboard, JButton enter, JButton backspace) {
         this.wordleGame = wordleGame;
         this.dictionary = dictionary;
         this.labels = labels;
@@ -27,8 +26,7 @@ public class WordleController
         this.backspace = backspace;
     }
 
-    public void addLetter(String letter)
-    {
+    public void addLetter(String letter) {
         JLabel spot = labels[row][column];
 
         guessWord.append(letter);
@@ -41,8 +39,7 @@ public class WordleController
         if (column < 4)
         {
             column++;
-        }
-        else
+        } else
         {
             row++;
             column = 0;
@@ -50,8 +47,7 @@ public class WordleController
     }
 
 
-    public void enterGuess()
-    {
+    public void enterGuess() {
         String lookFor = guessWord.toString();
         String correctWord = wordleGame.getRandomWord();
         System.out.println(correctWord);
@@ -68,14 +64,12 @@ public class WordleController
                         labels[row][column].setOpaque(true);
                         labels[row][column].setBackground(Color.GREEN);
                         column++;
-                    }
-                    else if (result[i] == CharResult.WrongPlace)
+                    } else if (result[i] == CharResult.WrongPlace)
                     {
                         labels[row][column].setOpaque(true);
                         labels[row][column].setBackground(Color.YELLOW);
                         column++;
-                    }
-                    else
+                    } else
                     {
                         labels[row][column].setOpaque(true);
                         labels[row][column].setBackground(Color.GRAY);
@@ -89,8 +83,7 @@ public class WordleController
         }
     }
 
-    public void backspaceLetter()
-    {
+    public void backspaceLetter() {
         if (labels[row][column].getText().isEmpty())
         {
             if (row > 0 && column == 0)
@@ -99,15 +92,13 @@ public class WordleController
                 column += 4;
                 labels[row][column].setText("");
                 guessWord.deleteCharAt(column);
-            }
-            else
+            } else
             {
                 column--;
                 labels[row][column].setText("");
                 guessWord.deleteCharAt(column);
             }
-        }
-        else
+        } else
         {
             row++;
             column += 4;
