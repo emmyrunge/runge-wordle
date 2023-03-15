@@ -14,8 +14,8 @@ public class WordleGame
     public WordleGame(WordleDictionary dictionary)
     {
         Set<String> wordList = dictionary.getList();
-
         fiveLetterWords = new ArrayList<>();
+
         for (String word : wordList)
         {
             if (word.length() == 5)
@@ -24,6 +24,11 @@ public class WordleGame
             }
         }
         randomWord = fiveLetterWords.get(rand.nextInt(fiveLetterWords.size()));
+    }
+
+    public String getRandomWord()
+    {
+        return randomWord;
     }
 
     public ArrayList<String> getFiveLetterWords()
@@ -57,11 +62,5 @@ public class WordleGame
             }
         }
         return status;
-    }
-
-
-    public String getRandomWord()
-    {
-        return randomWord;
     }
 }

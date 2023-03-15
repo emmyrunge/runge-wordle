@@ -2,7 +2,6 @@ package runge.wordledictionary;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 
 public class WordleController
 {
@@ -12,8 +11,8 @@ public class WordleController
     private final JButton[] keyboard;
     private final JButton enter;
     private final JButton backspace;
-    private StringBuilder guessWord = new StringBuilder();
-    private int row = 0;
+    StringBuilder guessWord = new StringBuilder();
+    int row = 0;
     private int column = 0;
 
 
@@ -30,23 +29,15 @@ public class WordleController
 
     public void addLetter(String letter)
     {
-        //TEST BUG: gets string and returns void, so inner .setText is void
         JLabel spot = labels[row][column];
 
         guessWord.append(letter);
 
-        if (spot.getText().isEmpty())
-        {
-            spot.setText(letter);
-            spot.setHorizontalAlignment(SwingConstants.CENTER);
-            spot.setFont(new Font("Helvetica Neue", Font.ITALIC, 20));
-            //BUG: one letter not word
-            System.out.println(guessWord);
-        }
-        else
-        {
-            spot.setText("");
-        }
+        spot.setText(letter);
+        spot.setHorizontalAlignment(SwingConstants.CENTER);
+        spot.setFont(new Font("Helvetica Neue", Font.ITALIC, 20));
+        System.out.println(guessWord);
+
         if (column < 4)
         {
             column++;
@@ -70,57 +61,36 @@ public class WordleController
             {
                 row--;
                 CharResult[] result = wordleGame.guess(String.valueOf(guessWord));
-                //CharResult[] correctValues = {CharResult.Correct, CharResult.Correct,
-                // CharResult.Correct, CharResult.Correct, CharResult.Correct};
                 for (int i = 0; i < guessWord.length(); i++)
                 {
                     if (result[i] == CharResult.Correct)
                     {
                         labels[row][column].setOpaque(true);
-                        labels[row][column].setBackground(new Color(0, 204, 0));
+                        labels[row][column].setBackground(Color.GREEN);
                         column++;
                     }
                     else if (result[i] == CharResult.WrongPlace)
                     {
                         labels[row][column].setOpaque(true);
-                        labels[row][column].setBackground(new Color(213, 228, 13));
+                        labels[row][column].setBackground(Color.YELLOW);
                         column++;
                     }
                     else
                     {
                         labels[row][column].setOpaque(true);
-                        labels[row][column].setBackground(new Color(155, 155, 155));
+                        labels[row][column].setBackground(Color.GRAY);
                         column++;
                     }
-                }
-
-                if (Objects.equals(correctWord, guessWord.toString()))
-                {
-                    JOptionPane.showMessageDialog(null, "GOOD JOB!");
-                    System.exit(0);
                 }
                 row++;
                 column = 0;
                 guessWord.delete(0, 5);
             }
         }
-        else
-        {
-            JOptionPane.showMessageDialog(null, "Word is not found, try again");
-        }
-
-        if (row >= 6)
-        {
-            JOptionPane.showMessageDialog(null,
-                    "The word was: " + correctWord + ". Better luck next time");
-            System.exit(1);
-
-        }
     }
 
     public void backspaceLetter()
     {
-        //get the label, set text to "" and then go back one label
         if (labels[row][column].getText().isEmpty())
         {
             if (row > 0 && column == 0)
@@ -128,13 +98,19 @@ public class WordleController
                 --row;
                 column += 4;
                 labels[row][column].setText("");
+                guessWord.deleteCharAt(column);
             }
             else
             {
                 column--;
                 labels[row][column].setText("");
+                guessWord.deleteCharAt(column);
             }
         }
-        guessWord.deleteCharAt(column);
+        else
+        {
+            row++;
+            column += 4;
+        }
     }
 }
