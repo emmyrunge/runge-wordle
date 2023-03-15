@@ -17,7 +17,8 @@ public class WordleController
 
 
     public WordleController(WordleGame wordleGame, WordleDictionary dictionary,
-                            JLabel[][] labels, JButton[] keyboard, JButton enter, JButton backspace) {
+                            JLabel[][] labels, JButton[] keyboard,
+                            JButton enter, JButton backspace) {
         this.wordleGame = wordleGame;
         this.dictionary = dictionary;
         this.labels = labels;

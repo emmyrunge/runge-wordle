@@ -13,8 +13,7 @@ public class WordleGameFrame extends JFrame
     private JButton enter;
     private JButton backspace;
 
-    public WordleGameFrame(WordleGame wordleGame, WordleDictionary dictionary)
-    {
+    public WordleGameFrame(WordleGame wordleGame, WordleDictionary dictionary) {
         controller = new WordleController(wordleGame,
                 dictionary, letters, keyboard, enter, backspace);
 
@@ -47,7 +46,6 @@ public class WordleGameFrame extends JFrame
 
 
         //keyboard
-        JPanel keyboardGrid = new JPanel(new GridLayout(3, 10));
         JPanel keyboardLine1 = new JPanel();
         JPanel keyboardLine2 = new JPanel();
         JPanel keyboardLine3 = new JPanel();
@@ -112,6 +110,8 @@ public class WordleGameFrame extends JFrame
         });
         keyboardLine3.add(backspace);
 
+        JPanel keyboardGrid = new JPanel(new GridLayout(3, 10))
+
         keyboardGrid.add(keyboardLine1, BorderLayout.NORTH);
         keyboardGrid.add(keyboardLine2, BorderLayout.CENTER);
         keyboardGrid.add(keyboardLine3, BorderLayout.CENTER);
@@ -125,22 +125,17 @@ public class WordleGameFrame extends JFrame
         addKeyListener(new KeyListener()
         {
             @Override
-            public void keyTyped(KeyEvent e)
-            {
+            public void keyTyped(KeyEvent e) {
                 char character = e.getKeyChar();
                 if (Character.isAlphabetic(character))
                 {
                     controller.addLetter(String.valueOf(e.getKeyChar()).toUpperCase());
                     System.out.println("Key " + e.getKeyChar() + " pressed");
-                }
-                else if (character == KeyEvent.VK_BACK_SPACE)
-                {
+                } else if (character == KeyEvent.VK_BACK_SPACE) {
                     //remove letter
                     controller.backspaceLetter();
                     System.out.println("Key 'backspace' pressed");
-                }
-                else if (character == KeyEvent.VK_ENTER)
-                {
+                } else if (character == KeyEvent.VK_ENTER) {
                     //take each letter, build into string and do .guess method
                     controller.enterGuess();
                     System.out.println("Key 'enter' pressed");
@@ -148,13 +143,11 @@ public class WordleGameFrame extends JFrame
             }
 
             @Override
-            public void keyPressed(KeyEvent e)
-            {
+            public void keyPressed(KeyEvent e) {
             }
 
             @Override
-            public void keyReleased(KeyEvent e)
-            {
+            public void keyReleased(KeyEvent e) {
             }
         });
 
